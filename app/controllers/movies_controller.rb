@@ -11,10 +11,10 @@ class MoviesController < ApplicationController
   end
 
   def index
-    sort_header = params.key?(:sort) ? params[:sort] : nil
+    @sort_header = params.key?(:sort) ? params[:sort] : nil
     
-    if( sort_header != nil)
-      @movies = Movie.order(sort_header).all
+    if( @sort_header != nil)
+      @movies = Movie.order(@sort_header).all
     else 
       @movies = Movie.all
     end
