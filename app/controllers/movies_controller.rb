@@ -11,6 +11,7 @@ class MoviesController < ApplicationController
   end
 
   def index
+    print(params)
     @sort_header = params.key?(:sort) ? params[:sort] : nil
     
     if( @sort_header != nil)
@@ -19,6 +20,8 @@ class MoviesController < ApplicationController
       @movies = Movie.all
     end
 
+    ## get all different ratings
+    @all_ratings = Movie.pluck("DISTINCT rating")
   end
 
   def new
