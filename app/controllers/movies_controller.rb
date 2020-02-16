@@ -11,10 +11,15 @@ class MoviesController < ApplicationController
   end
 
   def index
-    print(params)
+    # print(params)
     @sort_header = params.key?(:sort) ? params[:sort] : nil
-    
-    if( @sort_header != nil)
+    @selected_ratings = (params[:ratings].nil?) ? [] : params[:ratings].map {|key,value| key}
+    print "Selected rating #{@selected_ratings}"
+    if( @sort_header != nil && @selected_ratings.length != 0)
+      @movies = Movie.order(@sort_header).where('rating in (?)', @selected_ratings).all
+    elsif(@selected_ratings.length != 0)
+      @movies = Movie.where('rating in (?)', @selected_ratings).all  
+    elsif( @sort_header != nil)
       @movies = Movie.order(@sort_header).all
     else 
       @movies = Movie.all
