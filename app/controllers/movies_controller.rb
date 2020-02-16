@@ -23,12 +23,12 @@ class MoviesController < ApplicationController
 
     ## there is a special case where the user clear all the rating.
     ## we have to clear the session
-    if( @sort_header == nil && @selected_ratings == nil)
+    if( @sort_header == nil && @selected_ratings == nil && params['commit'] != nil )
       session['ratings'] = nil
       ## total new page. clear all session
-      if( params['commit'] == nil)
-        session['sort'] = nil
-      end
+      # if( params['commit'] == nil)
+      #   session['sort'] = nil
+      # end
     end
     
     # print "Selected rating #{@selected_ratings}"
