@@ -1,0 +1,2 @@
+github: https://github.com/akg92/rottenpotatoes-rails-intro
+HerokuApp: https://limitless-hamlet-25285.herokuapp.com/
